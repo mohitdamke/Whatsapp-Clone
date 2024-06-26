@@ -88,11 +88,10 @@ fun SignUpScreen(
                     .padding(10.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Spacer(modifier = Modifier.padding(top = 30.dp))
                 Image(
                     painter = painterResource(id = R.drawable.logoapp),
                     contentDescription = "",
-                    modifier = Modifier.size(240.dp)
+                    modifier = Modifier.size(250.dp)
                 )
 
                 Text(
@@ -103,7 +102,6 @@ fun SignUpScreen(
                     color = Color(0xFF3AD8A8)
                 )
 
-                Spacer(modifier = Modifier.padding(top = 30.dp))
                 Column(
                     modifier = Modifier.padding(30.dp),
                     verticalArrangement = Arrangement.Center
@@ -338,7 +336,8 @@ fun SignUpScreen(
         scope.launch {
             if (state.value?.isSuccess?.isNotEmpty() == true) {
                 val success = state.value?.isSuccess
-                Toast.makeText(context, "$success", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "You have successfully registered", Toast.LENGTH_SHORT).show()
+                navController.navigate(Screens.Login.route)
             }
         }
     }

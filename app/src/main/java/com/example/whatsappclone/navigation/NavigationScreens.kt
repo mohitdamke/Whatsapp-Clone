@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.whatsappclone.screen.ChatListScreen
 import com.example.whatsappclone.screen.LoginScreen
 import com.example.whatsappclone.screen.SignUpScreen
 import com.example.whatsappclone.screen.SplashScreen
@@ -24,6 +25,9 @@ fun NavigationScreens() {
         }
         composable(Screens.Splash.route) {
             SplashScreen(navController = navController)
+        }
+        composable(Screens.ChatList.route) {
+            ChatListScreen(navController = navController)
         }
 
 

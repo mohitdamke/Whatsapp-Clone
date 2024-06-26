@@ -104,11 +104,10 @@ fun LoginScreen(
                     .padding(10.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Spacer(modifier = Modifier.padding(top = 30.dp))
                 Image(
                     painter = painterResource(id = R.drawable.logoapp),
                     contentDescription = "",
-                    modifier = Modifier.size(240.dp)
+                    modifier = Modifier.size(250.dp)
                 )
 
                 Text(
@@ -119,7 +118,6 @@ fun LoginScreen(
                     color = Color(0xFF3AD8A8)
                 )
 
-                Spacer(modifier = Modifier.padding(top = 30.dp))
                 Column(
                     modifier = Modifier.padding(30.dp),
                     verticalArrangement = Arrangement.Center
@@ -211,6 +209,7 @@ fun LoginScreen(
                             } else {
                                 scope.launch {
                                     viewModel.loginUser(email, password)
+                                    navController.navigate(Screens.ChatList.route)
                                 }
                             }
                         },
@@ -304,6 +303,7 @@ fun LoginScreen(
             if (state.value?.isSuccess?.isNotEmpty() == true) {
                 val success = state.value?.isSuccess
                 Toast.makeText(context, "$success", Toast.LENGTH_SHORT).show()
+                navController.navigate(Screens.ChatList.route)
             }
         }
     }
@@ -325,12 +325,14 @@ fun LoginScreen(
                     "SignIn With Google Account is Success ",
                     Toast.LENGTH_SHORT
                 ).show()
+            navController.navigate(Screens.ChatList.route)
+
             }
         }
     }
     LaunchedEffect(key1 = googleState.isError) {
         scope.launch {
-            if (googleState.isError != null) {
+            if (googleState.isError == null) {
                 Toast.makeText(
                     context,
                     "Failed to SignIn With Google Account",
